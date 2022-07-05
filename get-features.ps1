@@ -1,5 +1,3 @@
-function InstallWinGet()
-{
 	$hasPackageManager = Get-AppPackage -name "Microsoft.DesktopAppInstaller"
 
 	if(!$hasPackageManager)
@@ -14,7 +12,6 @@ function InstallWinGet()
 	
 		Add-AppxPackage -Path $latestRelease.browser_download_url
 	}
-}
 
 
 #Get scoop package manager
