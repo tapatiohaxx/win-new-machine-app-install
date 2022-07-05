@@ -15,12 +15,12 @@ If you have a new install of Windows 10 or 11, you can use this to quickly set i
    <li> Download onto your desired machine. </li>
    <li> Change your <code> ExecutionPolicy </code> to <i> RemoteSigned </i>. </li>
    <li> Run the script. </li> 
-   <li> Clean um any temporary directories if necessary> </li>
+   <li> Clean um any temporary directories if necessary. </li>
 </ol>
 
 <h3> Devlog </h3>
 <code> [4 July 2022] </code>: I created the script and performed initial testing. I found the following issues: <b>
 <ol>
-   <li> <code> winget </code> installation commands do not work.  </li> 
+   <li> <code> winget</code>  installation commands do not work.  </li> 
    <li> The program stops after the program installations. (all git and movement/directory manipulations are sound and legal) </li> 
 </ol>
