@@ -25,6 +25,8 @@ winget install Git.Git
 #You may also use code insiders by adding " - Insiders" to the end of the following command
 winget install Microsoft.VisualStudioCode
 winget install JanDeDobbeleer.OhMyPosh
+winget install 9N8G5RFZ9XK3 #Installs windows terminal(insider edition)
+winget install OpenJS.NodeJS
 scoop install neovim gcc python
 
 git clone https://github.com/tapatiohaxx/ps-user-scripts C:\user-scripts-git
