@@ -1,10 +1,21 @@
-# Install winget
-Add-AppxPackage "C:\Windows\Setup\Scripts\winget\Microsoft.VCLibs.x64.14.00.Desktop.appx"
-Add-AppxProvisionedPackage -Online -PackagePath "C:\Windows\Setup\Scripts\winget\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle" -LicensePath "C:\Windows\Setup\Scripts\winget\9c0fe2ce7f8e410eb4a8f417de74517e_License1.xml"
+function InstallWinGet()
+{
+	$hasPackageManager = Get-AppPackage -name "Microsoft.DesktopAppInstaller"
 
-# Sleep for 5 seconds to let winget get into the path because the installer is a buggy mess
-# If this does not work, try restarting the entire computer and installing the subsequent software on the next boot
-Start-Sleep -s 5
+	if(!$hasPackageManager)
+	{
+		Add-AppxPackage -Path "https://aka.ms/Microsoft.VCLibs.x64.14.00.Desktop.appx"
+		
+		$releases_url = "https://api.github.com/repos/microsoft/winget-cli/releases/latest"
+
+		[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+		$releases = Invoke-RestMethod -uri "$($releases_url)"
+		$latestRelease = $releases.assets | Where { $_.browser_download_url.EndsWith("msixbundle") } | Select -First 1
+	
+		Add-AppxPackage -Path $latestRelease.browser_download_url
+	}
+}
+
 
 #Get scoop package manager
 iwr -useb get.scoop.sh | iex
