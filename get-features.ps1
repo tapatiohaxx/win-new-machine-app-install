@@ -1,6 +1,10 @@
-Add-AppxProvisionedPackage -Online -PackagePath "C:\Microsoft.VCLibs.x64.14.00.Desktop.appx" -SkipLicense
-Add-AppxProvisionedPackage -Online -PackagePath "C:\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle" -LicensePath "C:\9c0fe2ce7f8e410eb4a8f417de74517e_License1.xml"
+# Install winget
+Add-AppxPackage "C:\Windows\Setup\Scripts\winget\Microsoft.VCLibs.x64.14.00.Desktop.appx"
+Add-AppxProvisionedPackage -Online -PackagePath "C:\Windows\Setup\Scripts\winget\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle" -LicensePath "C:\Windows\Setup\Scripts\winget\9c0fe2ce7f8e410eb4a8f417de74517e_License1.xml"
 
+# Sleep for 5 seconds to let winget get into the path because the installer is a buggy mess
+# If this does not work, try restarting the entire computer and installing the subsequent software on the next boot
+Start-Sleep -s 5
 
 #Get scoop package manager
 iwr -useb get.scoop.sh | iex
